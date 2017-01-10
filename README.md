@@ -7,15 +7,18 @@
    https://docs.debops.org/en/latest/debops/docs/installation.html
 
 3. Install dependant roles
-       ansible-galaxy install -r requirements.yml
+   ```
+   ansible-galaxy install -r requirements.yml
+   ```
 
 4. **Important**: Fix role bugs, see *Known issues*
 
 5. Setup hosts `inventory/hosts`, as well as `group_vars` and `host_vars`. If you want to test this playbook on docker, see `docker/docker-compose.yml` for example configuration.
 
 6. Run playbook
-
-       ansible-playbook site.yml
+   ```
+   ansible-playbook site.yml
+   ```
 
 # Known issues
 
