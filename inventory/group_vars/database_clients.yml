@@ -1,0 +1,4 @@
+---
+mariadb__flavor: mariadb_upstream
+mariadb__upstream_version: '10.1'
+mariadb__upstream_mirror: 'http://ftp.ubuntu-tw.org/mirror/mariadb/repo/{{ mariadb__upstream_version }}/{{ ansible_distribution | lower }}'

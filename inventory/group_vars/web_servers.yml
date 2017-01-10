@@ -1,0 +1,23 @@
+---
+php__sury: True
+php__packages: [ 'mysql', 'xml', 'mbstring', 'zip' ]
+php__production: True
+php__ini_cgi_fix_pathinfo: False # nginx should have the option disabled
+php__ini_post_max_size: 16M
+php__fpm_listen_owner: www-data
+php__fpm_listen_group: www-data
+php__fpm_pm: dynamic
+
+nginx_dependencies: False
+nginx_flavor: nginx.org
+nginx_user: www-data
+nginx_www: '/srv/www'
+nginx__default_servers:
+  - '{{ nginx_server_shop }}'
+nginx_server_shop:
+  enabled: True
+  name: [ 'shop', '_' ]
+  welcome: False
+  type: php5
+  php5: php5_www-data
+  index: index.html index.php

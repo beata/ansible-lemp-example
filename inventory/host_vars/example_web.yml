@@ -1,0 +1,2 @@
+---
+mariadb__server: "{{ hostvars['example_db']['ansible_default_ipv4']['address'] }}"

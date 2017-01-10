@@ -1,0 +1,38 @@
+---
+# Tasks file for installing services on instances
+- name: Install debops.mariadb_server
+  hosts: databases
+  become: True
+  tags: [ 'example::db', 'example::db:server' ]
+  roles:
+    - role: debops.mariadb_server
+
+- name: Setup database clients
+  hosts: database_clients 
+  become: True
+  tags: [ 'example::db', 'example::db:client' ]
+  roles:
+    - role: debops.mariadb
+
+- name: Install debops.php
+  hosts: web_servers
+  become: True
+  tags: [ 'example::web', 'example::web:php' ]
+  pre_tasks:
+    - name: Create run directory for PHP-FPM
+      file: path=/run/php state=directory owner=root group=root mode=0755
+  roles:
+    - role: debops.php/env
+    - role: debops.php
+
+- name: Install debops.nginx
+  hosts: web_servers
+  become: True
+  tags: [ 'example::web', 'example::web:nginx' ]
+  pre_tasks:
+    - name: Copy `site-default.d` to target
+      copy:
+        src: site/site-default.d/
+        dest: /etc/nginx/site-default.d/
+  roles:
+    - role: debops.nginx

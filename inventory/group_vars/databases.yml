@@ -1,0 +1,10 @@
+---
+mariadb_server__flavor: mariadb_upstream
+mariadb_server__upstream_version: '10.1'
+mariadb_server__bind_address: '::'
+mariadb_server__upstream_mirror: 'http://ftp.ubuntu-tw.org/mirror/mariadb/repo/{{ mariadb_server__upstream_version }}/{{ ansible_distribution | lower }}'
+
+mariadb__databases:
+  - name: '{{ application_database_name }}'
+    # source: ./sql/file/to/be/imported
+    # target: /tmp/db-contents.sql

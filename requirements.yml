@@ -1,0 +1,12 @@
+# install roles
+- src: debops.mariadb_server
+  version: v0.2.4
+
+- src: debops.mariadb
+  version: v0.2.2
+
+- src: debops.php
+  version: v0.2.4
+
+- src: debops.nginx
+  version: v0.1.9

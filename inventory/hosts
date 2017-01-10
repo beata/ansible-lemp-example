@@ -1,0 +1,15 @@
+# vim: ft=conf
+
+[app]
+example_web    ansible_connection=docker ansible_host=gwecweb
+example_db     ansible_connection=docker ansible_host=gwecdb
+
+[databases]
+example_db
+
+[database_clients]
+example_web
+example_db
+
+[web_servers]
+example_web
