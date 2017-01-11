@@ -7,9 +7,9 @@ example_db     ansible_connection=docker ansible_host=gwecdb
 [databases]
 example_db
 
-[database_clients]
-example_web
-example_db
-
 [web_servers]
 example_web
+
+[database_clients:children]
+databases
+web_servers

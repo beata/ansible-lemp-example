@@ -1,5 +1,12 @@
 ---
 # Tasks file for installing services on instances
+- name: Prepare debops.secret
+  hosts: app
+  become: True
+  tags: [ 'example::secret' ]
+  roles:
+    - role: debops.secret
+
 - name: Install debops.mariadb_server
   hosts: databases
   become: True

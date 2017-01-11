@@ -1,6 +1,11 @@
 ---
 mariadb__delegate_to: example_db # Must specify the host name for docker (because docker doesn't have ssh service)
 mariadb__users:
-  - name: '{{ application_database_user }}'
-    database: '{{ application_database_name }}'
-    host: "{{ hostvars['example_web']['ansible_default_ipv4']['address'] }}"
+  - name: '{{ application__database_user }}'
+    database: '{{ application__database_name }}'
+    host: "{{ ansible_default_ipv4['gateway'] }}" # Allow connections from docker host
+    password: '{{ application__database_password }}'
+  - name: '{{ application__database_user }}'
+    database: '{{ application__database_name }}'
+    host: "{{ hostvars['example_web']['ansible_default_ipv4']['address'] }}" # Allow connections from example_web
+    password: '{{ application__database_password }}'
