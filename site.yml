@@ -32,7 +32,7 @@
   pre_tasks:
     - name: Copy `site-default.d` to target
       copy:
-        src: site/site-default.d/
+        src: files/etc/nginx/site-default.d/
         dest: /etc/nginx/site-default.d/
   roles:
     - role: debops.nginx
