@@ -10,3 +10,6 @@
 
 - src: debops.nginx
   version: v0.1.9
+
+# Uncomment this role if you want to build a development environment
+#- src: novuso.composer

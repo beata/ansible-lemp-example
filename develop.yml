@@ -1,0 +1,10 @@
+---
+# Tasks for php development environment
+- name: Install composer
+  hosts: web_servers
+  become: True
+  tags: [ 'example:composer' ]
+  roles:
+    - role: novuso.composer
+  vars:
+    composer_local_dir: /tmp
