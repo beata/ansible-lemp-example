@@ -6,18 +6,10 @@ gwecweb:
     - "80:80"
   command: tail -f /dev/null
 
-gwecdata:
-  container_name: gwecdata
-  image: tianon/true
-  volumes:
-    - /var/lib/mysql
-
 gwecdb:
   container_name: gwecdb
   restart: always
   image: beatada/ansible:trusty
   expose:
     - "3306"
-  volumes_from:
-    - gwecdata
   command: tail -f /dev/null
