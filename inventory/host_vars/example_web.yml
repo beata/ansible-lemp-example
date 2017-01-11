@@ -1,5 +1,5 @@
 ---
-mariadb__server: "{{ hostvars['example_db']['ansible_default_ipv4']['address'] }}"
+mariadb__server: "{{ hostvars['example_db']['ansible_default_ipv4']['address'] }}" # would be used as mysql's -h variable
 mariadb__delegate_to: example_db # hostname defined in inventory, used for docker container that doesn't have ssh service
 mariadb__users:
   - name: '{{ application__database_user }}'

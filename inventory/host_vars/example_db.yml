@@ -1,5 +1,5 @@
 ---
-mariadb__delegate_to: example_db # Must specify the host name for docker (because docker doesn't have ssh service)
+mariadb__delegate_to: example_db # hostname defined in inventory, used for docker container that doesn't have ssh service
 mariadb__users:
   - name: '{{ application__database_user }}'
     database: '{{ application__database_name }}'

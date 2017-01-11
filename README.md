@@ -13,12 +13,33 @@
 
 4. **Important**: Fix role bugs, see *Known issues*
 
-5. Setup hosts `inventory/hosts`, as well as `group_vars` and `host_vars`. If you want to test this playbook on docker, see `docker/docker-compose.yml` for example configuration.
+5. Setup hosts in `inventory/hosts`, as well as `group_vars` and `host_vars`. If you want to test this playbook on docker, see `docker/*` for example configuration.
 
 6. Run playbook
    ```
-   ansible-playbook site.yml
+   # Create docker containers if you are going to run this playbook on docker
+   $ docker-compose -f docker/docker-compose.yml up -d
+
+   # Run ansible playbook
+   $ ansible-playbook site.yml
    ```
+
+# Variables
+- `inventory/hosts`
+    - Manage hosts here, don't change the group name
+- `inventory/group_vars/*`
+    - `app.yml` - Defines application variables.
+    - `databases.yml` - Overwrites variables from `roles/debops.mariadb_server` for `databases` group.
+    - `database_clients.yml` - Overwrites variables from `roles/debops.mariadb` for `database_clients` group.
+    - `web_servers.yml` - Overwrites variables from `roles/debops.php` and `roles/debops.nginx` for `web_servers` group
+- `inventory/host_vars/*`
+    - Specify host specfic variables.
+
+# File locations
+- Document root of the virtual host
+    - `{{ nginx_www }}/sites/{{ nginx_server_shop['name']['0'] }}` which is equivalent to `/srv/www/sites/shop`. You may want to configure these server variables as your need.
+- MySQL passwords
+    - Stored in local directory `secret/`
 
 # Known issues
 

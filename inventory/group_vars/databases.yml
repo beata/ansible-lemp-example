@@ -1,9 +1,11 @@
 ---
+# Overwrite variables from `debops:mariadb_server`
 mariadb_server__flavor: mariadb_upstream
 mariadb_server__upstream_version: '10.1'
 mariadb_server__bind_address: '::'
 mariadb_server__upstream_mirror: 'http://ftp.ubuntu-tw.org/mirror/mariadb/repo/{{ mariadb_server__upstream_version }}/{{ ansible_distribution | lower }}'
 
+# Create application database on the database server
 mariadb__databases:
   - name: '{{ application__database_name }}'
     # source: ./sql/file/to/be/imported
