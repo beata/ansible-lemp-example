@@ -31,6 +31,8 @@
   roles:
     - role: debops.php/env
     - role: debops.php
+  post_tasks:
+    - command: 'service php{{ php__version }}-fpm restart'
 
 - name: Install debops.nginx
   hosts: web_servers
