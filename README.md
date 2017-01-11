@@ -18,7 +18,7 @@
 6. Run playbook
    ```
    # Create docker containers if you are going to run this playbook on docker
-   $ docker-compose -f docker/docker-compose.yml up -d
+   $ docker-compose -f docker/docker-compose-test.yml up -d
 
    # Run ansible playbook
    $ ansible-playbook site.yml
