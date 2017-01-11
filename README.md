@@ -37,7 +37,8 @@
 
 # File locations
 - Document root of the virtual host
-    - `{{ nginx_www }}/sites/{{ nginx_server_shop['name']['0'] }}` which is equivalent to `/srv/www/sites/shop`. You may want to configure these server variables as your need.
+    - `{{ nginx_www }}/sites/{{ nginx_server_shop['name']['0'] }}/public` which is equivalent to `/srv/www/sites/shop/public`.
+      You may want to configure variables in `inventory/group_vars/web_servers.yml` as your need.
 - MySQL passwords
     - Stored in local directory `secret/`
 
