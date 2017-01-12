@@ -1,0 +1,34 @@
+# Containers based on service ready images. (You can use `docker commit` to create images from containers that have run playbooks.)
+#
+# Including the following feature:
+#
+#   - Persistant data storage
+#   - Mount project directory to web folder
+#
+
+version: '2'
+
+services:
+  gwecweb:
+    container_name: gwecweb
+    restart: always
+    image: gwecweb:init
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/srv/www/sites/shop # Mount project directory to the web folder, the path to document root is '/srv/www/shop/public', see `inventory/group_vars/web_servers.yml`
+    command: service nginx restart && service php7.0-fpm restart
+
+  gwecdb:
+    container_name: gwecdb
+    restart: always
+    image: gwecdb:init
+    expose:
+      - "3306"
+    volumes:
+      - gwecdata:/var/lib/mysql
+    command: service mysql restart
+
+volumes:
+  gwecdata:
+    driver: local

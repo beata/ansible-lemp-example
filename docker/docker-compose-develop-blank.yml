@@ -1,0 +1,35 @@
+# These are empty containers that you can run playbooks for test purpose.
+#
+# Including the following feature:
+#
+#   - Persistant data storage
+#   - Mount project directory to web folder
+#
+# After services installed by playbooks, you may want to commit these docker containers for later use, see `docker-composer-develop-run.yml` to see how to auto start services after container created.
+
+version: '2'
+
+services:
+  gwecweb:
+    container_name: gwecweb
+    restart: always
+    image: beatada/ansible:trusty
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/srv/www/sites/shop # Mount project directory to the web folder, the path to document root is '/srv/www/shop/public', see `inventory/group_vars/web_servers.yml`
+    command: tail -f /dev/null
+
+  gwecdb:
+    container_name: gwecdb
+    restart: always
+    image: beatada/ansible:trusty
+    expose:
+      - "3306"
+    volumes:
+      - gwecdata:/var/lib/mysql
+    command: tail -f /dev/null
+
+volumes:
+  gwecdata:
+    driver: local
