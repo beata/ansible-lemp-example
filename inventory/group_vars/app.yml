@@ -2,8 +2,10 @@
 application__database_name: example
 application__database_user: example
 application__password_length: '48'
-application__database_password: '{{ lookup("password",
-                                      secret + "/mariadb/application/credentials/" +
-                                      application__database_user + "/password " +
-                                      "length=" + application__password_length ) }}'
+application__database_root_password: '{{ lookup("password",
+                                          secret + "/mariadb/root/password " +
+                                          "length=" + application__password_length ) }}'
 
+application__database_password: '{{ lookup("password",
+                                      secret + "/mariadb/" + application__database_user + "/password " +
+                                      "length=" + application__password_length ) }}'
