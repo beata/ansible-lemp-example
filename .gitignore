@@ -4,4 +4,4 @@
 /roles/
 /secret/
 
-site.retry
+*.retry
