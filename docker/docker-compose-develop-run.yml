@@ -17,8 +17,8 @@ services:
       - "80:80"
     volumes:
       - ./web:/srv/www/sites/shop # Mount project directory to the web folder, the path to document root is '/srv/www/shop/public', see `inventory/group_vars/web_servers.yml`
-      - ./files/web/wait-for-services.sh:/root/wait-for-services.sh
-    command: /root/wait-for-services.sh tail -f /dev/null
+      - ./files/start-services.sh:/root/start-services.sh
+    command: /root/start-services.sh nginx php7.0-fpm
 
   gwecdb:
     container_name: gwecdb
@@ -28,8 +28,8 @@ services:
       - "3306"
     volumes:
       - gwecdata:/var/lib/mysql
-      - ./files/db/wait-for-services.sh:/root/wait-for-services.sh
-    command: /root/wait-for-services.sh tail -f /dev/null
+      - ./files/start-services.sh:/root/start-services.sh
+    command: /root/start-services.sh mysql
 
 volumes:
   gwecdata:
