@@ -9,4 +9,4 @@ for service in $args; do
     sudo service $service restart
 done
 
-exec /bin/bash
+exec tail -f /dev/null
